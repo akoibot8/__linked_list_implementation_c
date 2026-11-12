@@ -81,7 +81,9 @@ void  __print(node_t* HEAD, int inverse, int __print_as_characters)
     node_t current =  *HEAD;
 
     //printf("%p \n",(void*)current);
+    
 
+    //printf("%p\n",current);
 
     if (inverse) // -> we are allowed to just do this because 0 is falsely in C
     {
@@ -92,7 +94,7 @@ void  __print(node_t* HEAD, int inverse, int __print_as_characters)
         }
         while (current != NULL)
         {
-            printf(__print_as_characters == 1 ? "%c\n" : "%d\n", current->value);
+            printf(__print_as_characters ? "%c\n" : "%d\n", current->value);
             current = current->previous; // --> then back down and output
         }
     }
@@ -100,7 +102,8 @@ void  __print(node_t* HEAD, int inverse, int __print_as_characters)
     {
         while (current != NULL)
         {
-            printf(__print_as_characters == 1 ? "%c\n" : "%d\n", current->value);
+            printf(__print_as_characters ? "%c\n" : "%d\n", current->value);
+            //printf("%s\n", "this is from the __print func");
             current = current->next; // --> traverse
         }
     }

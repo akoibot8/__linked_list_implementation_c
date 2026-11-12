@@ -1,24 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "./linked_list.h"
+#include "linked_list_array.h"
+#include "linked_list.h"
 
 /*
    Standered entry point
 */
 int main()
 {
+    linked_list_array* my_linked_list_array = allocate_linked_list_array();
+    
+    
+    push(my_linked_list_array, 1);
+    push(my_linked_list_array, 2);
+    push(my_linked_list_array, 3);
+    push(my_linked_list_array, 4);
 
-    node* HEAD = allocate_node(); // WARNING: THIS IS ALWAYS ZERO!
-    insert_to_front(&HEAD, 2);
-    insert_to_front(&HEAD, 3);
-    insert_to_front(&HEAD, 4);
-    insert_to_front(&HEAD, 4);
-    insert_to_front(&HEAD, 4);
-    insert_to_front(&HEAD, 4);
-    insert_to_front(&HEAD, 4);
-    insert_to_front(&HEAD, 4);
-    insert_to_front(&HEAD, 4);
+    __print(&my_linked_list_array->top, 1, 0);
+
 
     /*  NOTE:
         We know that HEAD is always overwritten whenever
@@ -26,7 +26,6 @@ int main()
         or atleast this should be the case.
     */
     
-    __print(&HEAD, 1);
 
     return 0;
 }

@@ -3,6 +3,8 @@
 
 #include "./linked_list_array.h"
 
+#include "linked_list.h"
+
 /*
     A linked list implementation of an array structure.
     We've chosen to go with linked list's because they will allow for better mobility
@@ -27,4 +29,52 @@
               the chains within the linked lists are NOT FREE!
 */
 
+linked_list_array* allocate_linked_list_array()
+{
+    linked_list_array* _a = (linked_list_array*)malloc(sizeof(linked_list_array));
+    _a->top = allocate_node();
+    return _a;
+}
+
+int push(linked_list_array* array, int value)
+{
+    if (array == NULL)
+    {
+        printf("You must explicitly pass a list");
+        return 1;
+    }
+
+    if (array->top)
+    {
+        insert_to_front(&array->top, value);
+    } else
+    {
+        printf("%s\n", "theirs no top");
+    }
+
+    return 0;
+}
+
+node_t pop(linked_list_array* array)
+{
+    if (array == NULL)
+    {
+        printf("You must explicitly pass a list");
+        return NULL;
+    }
+
+    if (array->top)
+    {
+        node_t __to_be_new_head = allocate_node();
+        __to_be_new_head = array->top->next;
+
+        __to_be_new_head->previous = NULL;
+        array->top = NULL;
+
+        return __to_be_new_head;
+    }
+
+    
+    return NULL;
+}
 
