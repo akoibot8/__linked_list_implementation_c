@@ -26,7 +26,7 @@ int main()
         or atleast this should be the case.
     */
     
-    __print(&HEAD, 1);
+    __print(&HEAD, 1, 0);
 
     return 0;
 }
