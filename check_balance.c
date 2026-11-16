@@ -86,7 +86,7 @@ int is_matching_pair(char char_1, char char_2)
     @param const char* str -> the string containing the balance or unbalance of parenthasis you wanna check
     @return 0|1 true if so else false
 */
-int check_balance(const char* str)
+int __check_balance(const char* str)
 {
     linked_list_array* _array = allocate_linked_list_array();
     linked_list_array* _awaiting = allocate_linked_list_array();

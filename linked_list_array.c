@@ -55,11 +55,21 @@ int push(linked_list_array* array, int value)
     return 0;
 }
 
+int is_empty(linked_list_array* array)
+{
+    return (array->top == NULL);
+}
+
 node_t pop(linked_list_array* array)
 {
     if (array == NULL)
     {
         printf("You must explicitly pass a list");
+        return NULL;
+    }
+    if (is_empty(array))
+    {
+        printf("That list is empty..");
         return NULL;
     }
 

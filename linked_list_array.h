@@ -33,6 +33,10 @@ linked_list_array* allocate_linked_list_array();
 int push(linked_list_array* array, int value);
 
 /*
+    checks if the given linked list array is empty
+*/
+int is_empty(linked_list_array*array);
+/*
     pops the top of the given linked list array
 */
 node_t pop(linked_list_array* array);
