@@ -3,6 +3,10 @@
 #include <string.h>
 
 /*
+    this is a fucking horror
+*/
+
+/*
     so the plan with this implementation is as follows
         instead of doing all those checks we did as with the other one
         we will instead just push into an array, and check the last with whatever is in the array
@@ -27,48 +31,22 @@
         // ( && ) as matching pairs
 */
 
-int is_matching_pair(char* str_1, char* str_2)
+/*
+    note you must always pass open before close
+*/
+int is_matching_pair(char open, char close)
 {
-    if (*str_2 == 0 || *str_1 == 0)
-    {
-        return false;
-    }
-
-    printf("%s %d\n", "second value", *str_2);
-    if (!strcmp(str_1, "("))
-    {
-        return !strcmp(str_2, ")");
-    }
-    if (!strcmp(str_1, "{"))
-    {
-        return !strcmp(str_2, "}");
-    }
-    if (!strcmp(str_1, "["))
-    {
-        return !strcmp(str_2, "]");
-    }
-
-    /*
-       I know this is extreamly unoptimal but we've also gotta watch for the case where str 1 is the closing
-       pair.
-    */
-
-    if (strcmp(str_1, ")") == 0)
-    {
-        printf("inside ( \n");
-        return strcmp(str_2, "(") == 0;
-    }
-    if (!strcmp(str_1, "}"))
-    {
-        return !strcmp(str_2, "{");
-    }
-    if (!strcmp(str_1, "]"))
-    {
-        return !strcmp(str_2, "[");
-    }
-
-    return false;
+    switch (open) {
+        case '(':
+              return (close == ')');
+        case '[':
+              return (close == ']');
+        case '{':
+              return (close == '}');
+        defualt: false;
+    };
 }
+
 
 bool check_balance(const char* str)
 {
@@ -102,16 +80,16 @@ bool check_balance(const char* str)
         {
 
             printf("%s %c %c\n", "before", str[i], array->top->value);
-            if (is_matching_pair((char*)&str[i], (char*)&array->top->value))
+            if (is_matching_pair(str[i], array->top->value))
             {
                 printf("%s %c %c\n", "Its a mtaching pair!", str[i], array->top->value);
                 pop(array);
+                __print(&array->top, 0,1);
             }
             else 
             {
 
-                printf("%s\n", "Pushing");
-                push(array, str[i]);
+                printf("%s %c\n", "Pushing: ", str[i]);
             }
         }
     }
@@ -120,7 +98,6 @@ bool check_balance(const char* str)
     {
         return true;
     }
-
 
     return 0;
 }
