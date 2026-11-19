@@ -32,7 +32,7 @@
 linked_list_array* allocate_linked_list_array()
 {
     linked_list_array* _a = (linked_list_array*)malloc(sizeof(linked_list_array));
-    _a->top = allocate_node();
+    if (_a) {_a->top = NULL;} 
     return _a;
 }
 
@@ -44,14 +44,7 @@ int push(linked_list_array* array, int value)
         return 1;
     }
 
-    if (array->top)
-    {
-        insert_to_front(&array->top, value);
-    } else
-    {
-        printf("%s\n", "theirs no top");
-    }
-
+    insert_to_front(&array->top, value);
     return 0;
 }
 
@@ -73,18 +66,17 @@ node_t pop(linked_list_array* array)
         return NULL;
     }
 
-    if (array->top)
+    node_t popped_node = array->top;
+    array->top = popped_node->next;
+
+    if (array->top != NULL)
     {
-        node_t __to_be_new_head = allocate_node();
-        __to_be_new_head = array->top->next;
-
-        __to_be_new_head->previous = NULL;
-        array->top = NULL;
-
-        return __to_be_new_head;
+        array->top->previous = NULL; // break the link to the last head
     }
 
-    
-    return NULL;
+    popped_node->next = NULL;
+    popped_node->previous = NULL;
+
+    return popped_node;
 }
 

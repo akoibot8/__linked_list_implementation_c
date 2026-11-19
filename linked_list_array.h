@@ -38,6 +38,7 @@ int push(linked_list_array* array, int value);
 int is_empty(linked_list_array*array);
 /*
     pops the top of the given linked list array
+    returns the node that was just poped off
 */
 node_t pop(linked_list_array* array);
 

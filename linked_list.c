@@ -19,18 +19,21 @@ int insert_to_front(node_t* NODE_HEAD, int value)
         return -1;
     }
 
-    if (!value)
-    {
-        printf("value; must be explicitly passed");
-        return -1;
-    }
+    // if (!value) // NOTE: this was commented out because 0 is maby something we might wanna store..
+    // {
+    //     printf("value; must be explicitly passed");
+    //     return -1;
+    // }
 
     node_t _t = allocate_node();
     _t->previous = NULL;
     _t->next = *NODE_HEAD;
     _t->value = value;
 
-    (*NODE_HEAD)->previous = _t;
+    if (*NODE_HEAD != NULL)
+    {
+        (*NODE_HEAD)->previous = _t;
+    }
     *NODE_HEAD = _t;
 
     //printf( "Value -> %-3d | Mem Location -> %p\n",

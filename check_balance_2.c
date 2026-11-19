@@ -1,10 +1,10 @@
 #include "linked_list_array.h"
+#include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
 #include <string.h>
 
-/*
-    this is a fucking horror
-*/
+
 
 /*
     so the plan with this implementation is as follows
@@ -26,9 +26,15 @@
 */
 
 /*
-    TODO: find a better way to determin matching pairs
+    TODO:
+    right now, strings like "<(>) count as balanced strings because we really only care about the parenthasis..."
+    Its fine for now but I don't know if thats the right way to go about it.
+    ^^^ FIXED -> they are now just also counted as brackets
+
     FIXME: as of right now the matching pair function doesnt properly work. doesnt seem to reconize
         // ( && ) as matching pairs
+
+
 */
 
 /*
@@ -36,6 +42,7 @@
 */
 int is_matching_pair(char open, char close)
 {
+
     switch (open) {
         case '(':
               return (close == ')');
@@ -43,61 +50,67 @@ int is_matching_pair(char open, char close)
               return (close == ']');
         case '{':
               return (close == '}');
-        defualt: false;
+        case '<':
+              return (close == '>');
+        default: return false;
     };
 }
 
 
 bool check_balance(const char* str)
 {
-    
     /*    6      1
        [[]][] + \0
     */
-    const int len = strlen(str);
-    linked_list_array* array = allocate_linked_list_array();
-    
-    printf("%s\n", str);
+
+    if (str == NULL)
+    {
+        printf("%s\n", "the passed string is NULL");
+        return false;
+    }
     
     if (!strcmp(str, ""))
     {
-        return false;
+        return true; // may as well count it as a pass because theirs no unbalance here...
     }
+    //printf("Let pass -> %s \n", str);
 
-    if (str == 0)
-    {
-        return false;
-    }
+    const int len = strlen(str);
+    linked_list_array* array = allocate_linked_list_array();
+    
 
     // minus one to accounbt for  the null terminator
     for (int i = 0; i < len ; i++)
     {
-        printf("itter \n");
-        printf("%d %d %c\n", i, len, str[i]);
-        if (str[i] == '('  ||str[i] == '[' || str[i] == '{' ||
-            str[i] == ']' || str[i] == ')' || str['}']
-        )
+
+        if (str[i] == '('  ||str[i] == '[' || str[i] == '{' || str[i] == '<') // it can only ever be the opening pairs
         {
-
-            printf("%s %c %c\n", "before", str[i], array->top->value);
-            if (is_matching_pair(str[i], array->top->value))
+            push(array, str[i]);
+        } 
+        else if (str[i] == ')'  ||str[i] == ']' || str[i] == '}' || str[i] == '>')
+        {
+            
+            /* 
+               Is empty can't be passed here because we
+               got a closing char.. but the opened char array is empty..
+            */
+            if (is_empty(array) || !is_matching_pair(array->top->value, str[i]))
             {
-                printf("%s %c %c\n", "Its a mtaching pair!", str[i], array->top->value);
-                pop(array);
-                __print(&array->top, 0,1);
+                printf("Failed -> %s\n", str);
+                return false;
             }
-            else 
-            {
+            node_t popped = pop(array);
+            free(popped);
+        } 
 
-                printf("%s %c\n", "Pushing: ", str[i]);
-            }
-        }
     }
-
     if (is_empty(array))
     {
+        printf("Passed -> %s\n", str);
         return true;
     }
-
-    return 0;
+    else 
+    {
+        return false;
+    }
 }
