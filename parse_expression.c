@@ -60,7 +60,7 @@ char* parse_expression(char *expr,int expr_len, char *parse_operation_type)
         {
             if (is_operator(expr[i]))
             {
-                if (!is_empty(my_array) && is_of_higher_order(expr[i], my_array->top->value))
+                if (!is_empty(my_array) && is_of_higher_order(my_array->top->value, expr[i] ))
                 {
                     node_t popped = pop(my_array);
 

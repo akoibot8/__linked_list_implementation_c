@@ -33,8 +33,8 @@ int is_operator(int character);
     brackets -> exponets -> multiplication -> division -> adition -> subtraction
        ()   -->   ^     -->       *       -->    /    -->   +    -->     -
     
-    @param char_1 char -> the first character, str[n]
-    @param char_1 char -> the second character, prob HEAD
+    @param char_1 char -> the first character, prob HEAD -> this must be checked first because it must go from highest to lowers and one of higher may already be on the stack
+    @param char_1 char -> the second character, str[n] 
 */
 int is_of_higher_order(char char_1, char char_2);
 
