@@ -2,6 +2,15 @@
 #include "linked_list_array.h"
 
 /*
+    Horrible first attempt of check balance function, this version just goes from the outside edges
+    towards the middle so it cant really check for cases such as <(>) because it would check the < with the ) and [][[]] as its going
+    from outside to inside.
+        
+    Im not made at it though because this was really just my first shot at this problem and it actually works pretty well for the obvious cases such as
+    [()], (((()))) and whatnot
+*/
+
+/*
     horrid function that returns what type of parenthasis the 
     character you just passed is.
 */

@@ -5,7 +5,6 @@
 #include <string.h>
 
 
-
 /*
     so the plan with this implementation is as follows
         instead of doing all those checks we did as with the other one
@@ -33,7 +32,6 @@
 
     FIXME: as of right now the matching pair function doesnt properly work. doesnt seem to reconize
         // ( && ) as matching pairs
-
 
 */
 

@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/balance_test.dir/link.d CMakeFiles/balance_test.dir/check_balance_2.c.o CMakeFiles/balance_test.dir/test_balance.c.o CMakeFiles/balance_test.dir/linked_list.c.o CMakeFiles/balance_test.dir/linked_list_array.c.o -o balance_test
