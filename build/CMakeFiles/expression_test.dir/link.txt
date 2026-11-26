@@ -1,1 +1,0 @@
-/usr/bin/cc -Wl,--dependency-file=CMakeFiles/expression_test.dir/link.d CMakeFiles/expression_test.dir/_test_parse_expression.c.o CMakeFiles/expression_test.dir/parse_expression.c.o CMakeFiles/expression_test.dir/linked_list.c.o CMakeFiles/expression_test.dir/linked_list_array.c.o -o expression_test

@@ -1,4 +1,0 @@
-/home/dev/c_projects/build/CMakeFiles/balance_test.dir
-/home/dev/c_projects/build/CMakeFiles/expression_test.dir
-/home/dev/c_projects/build/CMakeFiles/edit_cache.dir
-/home/dev/c_projects/build/CMakeFiles/rebuild_cache.dir
