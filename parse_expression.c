@@ -5,11 +5,35 @@
 #include "parse_expression.h"
 #include "linked_list_array.h"
 
+/*
+ * TODO: Handle the parenthasis case where parenthasis are present within the passed expression
+ *	^^ as of right now we just do not allow the handler to pass through an expression containing parenthasis and having to handle the 
+ *	case right this instant would result in bad implementation!
+ *			Though note the scaffolding for the implemtation is well under way
+ *				* Check "parse_expression.h"
+ * */
+
 
 int is_operator(int character)
 {
     return strchr("*-+/", character) != NULL;
     //return (char[]){'*', '-', '+', '/'}[character]? 1 : 0;
+}
+
+char* is_parenthasis(char character)
+{
+	if (character == 0)
+	{
+		printf("You must explicitly pass through a valid character, you passed -> %c\n", character);
+		return 0;
+	}
+
+	switch (character)
+	{
+		case '(': return "opening";
+		case ')': return "closing";
+	}
+	return 0;
 }
 
 int get_operator_weight(char op)
@@ -38,11 +62,11 @@ char* parse_expression(char *expr,int expr_len, char *parse_operation_type)
     {
         printf("%s\n", "you cannot parse an expression that's null...");
     }
-
     if (!strcmp(parse_operation_type, "postfix") && !strcmp(parse_operation_type, "prefix"))
     {
         printf("%s\n", "You passed an invalid parse_operation_type!");
     }
+   
 
     linked_list_array* my_array = allocate_linked_list_array();
     char* parsed_expression = malloc(expr_len + 1);

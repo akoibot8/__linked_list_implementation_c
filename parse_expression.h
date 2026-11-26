@@ -46,4 +46,16 @@ int is_of_higher_order(char char_1, char char_2);
 */
 int get_operator_weight(char op);
 
+
+/*
+ * NOTE: This implementation is mostly garbage as of right now and must be redone if its to go into prod. though as a test it works fine for now
+ *
+*  Simply just check's if the given character is a parenthasis.
+*  It also returns it type if it is (By type we simply mean if its "closing" or "opening")
+*  @param char char -> the character to checkA
+*  @return int && char*? -> the resolution on whether or not its a parenthasis and also optionally its type.
+ * */
+char* is_parenthasis(char character);
+
+
 #endif
