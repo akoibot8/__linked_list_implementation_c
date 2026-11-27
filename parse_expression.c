@@ -13,7 +13,6 @@
  *				* Check "parse_expression.h"
  * */
 
-
 int is_operator(int character)
 {
     return strchr("*-+/", character) != NULL;
@@ -84,6 +83,44 @@ char* parse_expression(char *expr,int expr_len, char *parse_operation_type)
         {
             if (is_operator(expr[i]))
             {
+		// Here we're going to check if the operators a parenthasis before we parse it.
+		// we do this here because parenthasis (if closing) must then remove all prior parenthasis from the array before they can move on
+
+		str* is_parenthasis_and_type = is_parenthasis(str[i]);
+		if (is_parenthasis_and_type != NULL) 
+		{
+			if (is_parenthasis_and_type == "opening")
+			{
+				push(my_array,'(');
+			} 
+			else
+			{ // Its most proberbly the closing bracket since its not the closing bracket
+				
+				while (!is_empty(my_array), 
+						&& is(parenthasis_and_type(my_array->top->value) == "closing"
+							&& is_operator(expr[i]))
+				{
+					/* 
+					 * What we're going to now do is walk the array untill the next found __closing__ character 
+					 * If we then find that said closing character we must stop walking the array and make sure to pop it.
+					 * */
+					
+				    	node_t popped = pop(my_array);
+
+
+					// TODO: Actuall parsing.
+				    	char __t_pop[] = {popped->value, '\0'};
+				    	strcat(parsed_expression, __t_pop);
+				    	free(popped);
+				}
+
+				node_t popped = pop(my_array); // __closing__ bracket
+				free(popped);
+			}
+
+			return 0;
+		}
+
                 while (!is_empty(my_array) && is_of_higher_order(my_array->top->value, expr[i] ))
                 {
                     node_t popped = pop(my_array);
